@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório: Simulação de Semáforo com Arduino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2 {
+            color: #00509e;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .media {
+            text-align: center;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório do Experimento: Simulação de Semáforo com Arduino</h1>
+        
+        <h2>1. Introdução</h2>
+        <p>Este experimento teve como objetivo simular o funcionamento de um semáforo utilizando um microcontrolador Arduino, três LEDs (vermelho, amarelo e verde) e uma protoboard. O semáforo é um dispositivo utilizado para controlar o fluxo de veículos e pedestres em cruzamentos. No experimento, replicamos a sequência de mudança de luzes para observar o comportamento do sistema e aplicar conceitos de eletrônica e programação com Arduino.</p>
+        
+        <h2>2. Materiais Utilizados</h2>
+        <ul>
+            <li>1 Arduino (UNO ou similar)</li>
+            <li>1 Protoboard</li>
+            <li>1 LED vermelho</li>
+            <li>1 LED amarelo</li>
+            <li>1 LED verde</li>
+            <li>3 resistores de 220Ω</li>
+            <li>Fios jumpers para conexões</li>
+            <li>Cabo USB para alimentação e programação do Arduino</li>
+            <li>Software Arduino IDE</li>
+        </ul>
+
+        <h2>3. Esquema de Montagem</h2>
+        <p>A montagem foi realizada conectando os LEDs à protoboard e ligando-os às portas digitais do Arduino conforme o seguinte esquema:</p>
+        <ul>
+            <li><strong>LED Vermelho</strong>: conectado à porta digital 9 do Arduino.</li>
+            <li><strong>LED Amarelo</strong>: conectado à porta digital 10.</li>
+            <li><strong>LED Verde</strong>: conectado à porta digital 11.</li>
+        </ul>
+        <p>Cada LED foi conectado em série com um resistor de 220Ω para limitar a corrente, evitando queima dos LEDs. O pino GND do Arduino foi conectado à linha negativa (terra) da protoboard, e todos os cátodos dos LEDs foram ligados à essa linha.</p>
+
+        <!-- Imagem 1 - Esquema do Circuito -->
+        <div class="media">
+            <h2>Esquema do Circuito</h2>
+            <img src=C:\Users\Administrator\Downloads\foto.jpg alt="Esquema do Circuito na Protoboard">
+        </div>
+
+        <h2>4. Código Fonte</h2>
+        <pre><code>
+// Definindo as portas dos LEDs
+int ledVermelho = 9;
+int ledAmarelo = 10;
+int ledVerde = 11;
+
+void setup() {
+  // Configurando os pinos como saídas
+  pinMode(ledVermelho, OUTPUT);
+  pinMode(ledAmarelo, OUTPUT);
+  pinMode(ledVerde, OUTPUT);
+}
+
+void loop() {
+  // Luz verde acesa (simulando trânsito liberado)
+  digitalWrite(ledVerde, HIGH);
+  delay(5000);  // Mantém por 5 segundos
+  digitalWrite(ledVerde, LOW);
+
+  // Luz amarela acesa (simulando atenção)
+  digitalWrite(ledAmarelo, HIGH);
+  delay(2000);  // Mantém por 2 segundos
+  digitalWrite(ledAmarelo, LOW);
+
+  // Luz vermelha acesa (simulando parada)
+  digitalWrite(ledVermelho, HIGH);
+  delay(5000);  // Mantém por 5 segundos
+  digitalWrite(ledVermelho, LOW);
+}
+        </code></pre>
+
+        <h2>5. Funcionamento</h2>
+        <p>Ao carregar o código no Arduino, observou-se a seguinte sequência:</p>
+        <ol>
+            <li>O LED verde acende por 5 segundos, representando a liberação do tráfego.</li>
+            <li>O LED amarelo acende por 2 segundos, alertando sobre a mudança iminente para a luz vermelha.</li>
+            <li>O LED vermelho acende por 5 segundos, indicando que o tráfego deve parar.</li>
+        </ol>
+        <p>A sequência se repete indefinidamente, simulando o comportamento de um semáforo tradicional.</p>
+
+        <!-- Imagem 2 - Montagem Final -->
+        <div class="media">
+            <h2>Montagem Final</h2>
+            <img src= C:\Users\Administrator\Downloads\foto2.jpg alt="Montagem Final com os LEDs e Arduino">
+        </div>
+
+        <h2>6. Análise dos Resultados</h2>
+        <p>O experimento foi bem-sucedido na simulação do semáforo. A troca de estados entre os LEDs ocorreu conforme esperado, e o código foi eficiente para controlar as luzes de acordo com o tempo configurado. O uso dos resistores garantiu a proteção dos LEDs e evitou danos ao circuito.</p>
+
+        <h2>7. Conclusão</h2>
+        <p>Este experimento demonstrou o funcionamento básico de um semáforo utilizando componentes eletrônicos simples e programação com Arduino. A partir da simulação, foi possível compreender melhor o controle de dispositivos através de código e o conceito de temporização, essenciais em projetos de automação.</p>
+
+        <h2>8. Possíveis Melhorias</h2>
+        <p>Algumas melhorias poderiam ser implementadas, como a inclusão de um botão para simular a intervenção de pedestres no sistema ou a implementação de um sistema mais complexo de semáforos para cruzamentos.</p>
+
+        <!-- Vídeo -->
+        <div class="media">
+            <h2>Vídeo do Funcionamento do Semáforo</h2>
+            <video controls>
+                <source src=C:\Users\Administrator\Downloads\video.mp4 type="video/mp4">
+                Seu navegador não suporta a reprodução de vídeo.
+            </video>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Relatório de Simulação de Semáforo com Arduino</p>
+        </footer>
+    </div>
+</body>
+</html>
